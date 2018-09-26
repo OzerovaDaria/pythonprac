@@ -36,6 +36,7 @@ class AlphaQ:
         
     #def __del__():
         #pass
+    #print()
 
 import sys
 exec(sys.stdin.read())
