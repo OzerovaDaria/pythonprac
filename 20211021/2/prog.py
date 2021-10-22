@@ -1,15 +1,14 @@
-#a = input()
-#print({c : c for c in a.split()})
-
 import math
-
-print(eval("x", {"x": 1}, math))
 
 d = {}
 st = input().split()
 while st[0] != "quit":
+    #print(st)
     if st[0][0] == ":":
-        d[st[0][1:]] = (st[2], st[1]) 
+        key = st[0][1:]
+        d[key] = [st[1], st[2]]
+    else:
+         print(eval(d[st[0]][1], {d[st[0]][0]: eval(st[1])}, math.__dict__))
     st = input().split()
-
-print(d)
+#print(d)
+print(len(d) + 1)

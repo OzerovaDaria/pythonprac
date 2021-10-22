@@ -1,0 +1,1 @@
+print(list(slide('ABCDEF', 3)))

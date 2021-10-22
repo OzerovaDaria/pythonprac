@@ -1,0 +1,3 @@
+m, n = 2, 4
+for f in fib(m, n):
+    print(f, end = ' ')

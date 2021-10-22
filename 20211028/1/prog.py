@@ -6,6 +6,5 @@ def fib(m, n):
         fib1, fib2 = fib2, fib1+fib2
         yield fib1
 
-m, n = eval(input())
-for f in fib(m, n):
-    print(f, end = ' ')
+import sys
+exec(sys.stdin.read())

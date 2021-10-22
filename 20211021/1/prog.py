@@ -1,8 +1,16 @@
-a = list(input().lower())
-a1 = list(a.insert(0, '0'))
-print(a1)
-m = {}
-dots= ""
+st = input()
+d = set()
+j = 0
+result = 0
+size = len(st) - 1
+while j != size:
+    d.add((st[j] + st[j+1]).lower())
+    j += 1
+for i in d:
+    if i.isalpha():
+        result += 1
+print(result)
+
 
 """
 c = {}
