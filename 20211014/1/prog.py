@@ -1,24 +1,29 @@
-def make_p(grade, n, *k):
-    i = 0
+import fractions
+def make(m, grade):
     sum = 0
+    res = 0
+    i = 3
     while (grade >=0):
-        sum += n**(grade)* k[i]
+        sum += m[0]**(grade)* m[i]
         i += 1
         grade -= 1
-    return sum
+    i += 1
+    grade = m[i-1]
+    while (grade >=0):
+        sum += m[0]**(grade)* m[i]
+        i += 1
+        grade -= 1
+    if res != 0:
+        return(sum / res == m[1])
+    else: return(False)
 
-s, w, a, *m = input().split(", ")
-kA = []
-kB = []
-sA = int(a)
-print(m)
-for i in range(sA+1):
-        kA.append(m[i])
-sB = int(m[sA])
-for j in range(sA+1, len(m)-1):
-        kB.append(m[sB + j])
-print(s, w, sA, sB)
-print(kA)
-print(kB)
-print(make_p(sA, int(s), kA))
-print(make_p(sB, int(s), kB))
+str = input().split(", ")
+m = []
+for i in str:
+    m.append(fractions.Fraction(i))
+if make(m, m[2]):
+    print("True")
+else:
+    print("False")
+
+
