@@ -1,0 +1,2 @@
+A, B = OrderedComplex(1, 1), OrderedComplexMul(1, 23)
+print(B<A, B@B)
