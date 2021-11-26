@@ -36,3 +36,21 @@ def dumpc(cls):
 
 
 """
+def objcount(cls):
+    class Objcount(cls):
+        counter = 0
+        def __init__(self, *args, **kwargs):
+            super(Objcount, self).__init__(*args, **kwargs)
+            self.__class__.counter += 1
+
+        def __del__(self):
+            self.__class__.counter -= 1
+    return Objcount
+
+import sys
+exec(sys.stdin.read())
+
+
+   
+
+    

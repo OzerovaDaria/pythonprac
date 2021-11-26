@@ -1,0 +1,5 @@
+@objcount
+class C:
+    pass
+
+print(C.counter)

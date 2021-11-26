@@ -1,0 +1,3 @@
+alq = AlphaQ(c=10, z=2, a=42)
+alq.e = 123
+print(alq)

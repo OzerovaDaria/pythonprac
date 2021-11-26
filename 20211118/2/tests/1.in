@@ -1,0 +1,3 @@
+class C:
+  num = Num()
+print(C().num)

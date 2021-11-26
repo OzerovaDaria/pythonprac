@@ -1,28 +1,20 @@
 class Num:
     def __get__(self, obj, cls):
-        print(f"Get from {cls}:{obj}")
-        return obj._value
+        #print(f"Get from {cls}:{obj}")
+        return getattr(obj, "_val", 0)
 
     def __set__(self, obj, val):
-        if val.isdigit():
-             obj._value = val
+        if hasattr(val, "real"):
+             obj._val = val
         else:
-            obj._value = len(val)
-        print(f"Set in {obj} to {val}")
+            obj._val = len(val)
+        #print(f"Set in {obj} to {val}")
        
-
     def __delete__(self, obj):
-        print(f"Delete from {obj}")
-        obj._value = None
+        #print(f"Delete from {obj}")
+        obj._val = None
 
-class C:
-    num = Num()
+import sys
+exec(sys.stdin.read())
 
-print(C().num)
-c, d = C(), C()
-c.num = d.num = 2
-print(c.num+d.num)
-c.num = "qwerqwerqwer"
-print(c.num+d.num)
-d.num = range(10, 1000, 7)
-print(c.num+d.num)
+
