@@ -1,15 +1,16 @@
 class dump(type):
-    def __init__(cls, clsname, parents, namespace):
-        for (n, f) in namespace.items():
+    def __init__(cls, n, parents, space):
+        for (n, f) in space.items():
             if callable(f): 
-                def partial(foo, name):
+                def pp(foo, nm):
                     def wrap(self, *args, **kwargs):
-                        print(f'{name}: {args}, {kwargs}')
+                        per = f'{nm}: {args}, {kwargs}'
+                        print(per)
                         return foo(self, *args, **kwargs)
                     return wrap
             else:
                 continue
-            setattr(cls, n, partial(f, n))
+            setattr(cls, n, pp(f, n))
 
 
 import sys
