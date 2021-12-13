@@ -1,0 +1,18 @@
+class C(metaclass=check):
+    a: int
+    b: str = "QQqqqqqq"
+
+c = C()
+print(c.check_annotations())
+
+c.a = -456
+print(c.check_annotations())
+
+c.a = 12
+print(c.check_annotations())
+
+c.b = ""
+print(c.check_annotations())
+
+c.b = "my str"
+print(c.check_annotations())

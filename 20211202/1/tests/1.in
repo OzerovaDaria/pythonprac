@@ -1,0 +1,4 @@
+class C(metaclass=dump):
+    pass
+
+C()

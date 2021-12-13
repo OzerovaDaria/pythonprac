@@ -1,0 +1,11 @@
+class C(metaclass=check):
+    a: str = "QQ"
+    b: float
+    #def __init__(self, bb='-0.01'):
+        #self.b = bb
+
+c = C()
+print(c.check_annotations())
+
+c.a = type("Boo",(str,),{})(42)
+print(c.check_annotations())
