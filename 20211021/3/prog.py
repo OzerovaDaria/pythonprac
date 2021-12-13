@@ -30,3 +30,4 @@ if d:
             maxm = j
     for i in sorted([j for j in d if d[j] == maxm]):
         print(i, end=' ')
+print()
