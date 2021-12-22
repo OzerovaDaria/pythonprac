@@ -1,27 +1,32 @@
-def my_print(not_waterr, val, waterr):
-    print('.' * not_waterr   + ' ' * (val - not_waterr)   + f' {not_waterr}/{total}')
-    print('~' * waterr + ' ' * (val - waterr) + f' {waterr}/{total}')
-
+def myprint(gas, p, water):
+    print('.' * gas   + ' ' * (p - gas)   + f' {gas}/{res}')
+    print('~' * water + ' ' * (p - water) + f' {water}/{res}')
 fline = input()
-waterr, h = 0, 0
-not_waterr = 0
-w = len(fline) - 2
+
+water = 0
+gas = 0
+ww = len(fline) - 2
+hh = 0
+
 while True:
     line = input()
-    not_waterr   += line.count('.')
-    waterr += line.count('~')
-    h += 1
+    gas   += line.count('.')
+    water += line.count('~')
+    hh += 1
     if (fline == line): break
-w, h = h, w
-print('#' * w + '##')
-for i in range(h):
+hh -= 1
+
+ww, hh = hh, ww
+print('#' * ww + '##')
+for i in range(hh):
     print('#', end='')
-    if not_waterr - i * w > 0:
-        print('.' * w, end='')
+    if gas - i * ww > 0:
+        print('.' * ww, end='')
     else:
-        print('~' * w, end='')
+        print('~' * ww, end='')
     print('#')
-print('#' * w + '##')
-val = max(waterr, not_waterr)
-total = not_waterr + waterr
-my_print(not_waterr, val, waterr)
+print('#' * ww + '##')
+p = max(water, gas)
+res = gas + water
+myprint(gas, p, water)
+
