@@ -15,4 +15,4 @@ while i != n+3:
         j += 1
     j = n
     i += 1
-    #print('\n')
+    print()
