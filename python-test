@@ -1,0 +1,7 @@
+#!/bin/sh
+for i in 2021*; do 
+	for j in $i/*; do
+		echo "$i $j"
+		python3 checkerNN.py $j/prog.py ../pythonprac2021/$j/tests
+	done
+done

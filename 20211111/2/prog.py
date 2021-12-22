@@ -30,7 +30,7 @@ while True:
         try:
             (x1, y1), (x2, y2), (x3, y3) = eval(instr)
         except Exception:
-            raise InvalidInput("InvalidInput")
+            raise InvalidInput("Invalid input")
         #print((x1, y1), (x2, y2), (x3, y3))
         sqt = triangleSquare(x1, y1, x2, y2, x3, y3)
     except InvalidInput as II:

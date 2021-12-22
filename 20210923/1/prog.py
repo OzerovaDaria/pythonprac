@@ -1,12 +1,12 @@
 a = int(input())
 if a % 25 == 0:
     if a % 2 == 0:
-        print("A+ B-", end = ' ')
+        print("A + B -", end = ' ')
     else:
-        print("A- B+", end = ' ')
+        print("A - B +", end = ' ')
 else:
-    print("A- B-", end = ' ')
+    print("A - B -", end = ' ')
 if a % 8 == 0:
-    print("C+")
+    print("C +")
 else:
-    print("C-")
+    print("C -")
