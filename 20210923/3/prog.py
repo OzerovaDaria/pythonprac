@@ -9,9 +9,9 @@ i = j = n
 while i != n+3:
     while j != n+3:
         if sum_of_ch(i*j) == 6:
-            print (":=)", end = " ")
+            print (i,"*",j, "=", ":=)", sep='', end = " ")
         else:
-            print (i,"*",j, "=", i * j, end = " ")
+            print (i,"*",j, "=", i * j, sep='', end = " ")
         j += 1
     j = n
     i += 1

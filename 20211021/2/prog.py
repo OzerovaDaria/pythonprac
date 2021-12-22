@@ -1,14 +1,18 @@
-import math
+from math import *
 
-d = {}
-st = input().split()
-while st[0] != "quit":
-    #print(st)
-    if st[0][0] == ":":
-        key = st[0][1:]
-        d[key] = [st[1], st[2]]
+s = input().split(' ')
+functions = dict()
+lines_count = 1
+
+while s[0] != 'quit':
+    if s[0][0] == ':':
+        # it's a function
+        functions[s[0][1:]] = (s[1:-1], s[-1])
     else:
-         print(eval(d[st[0]][1], {d[st[0]][0]: eval(st[1])}, math.__dict__))
-    st = input().split()
-#print(d)
-print(len(d) + 1)
+        ev = dict()
+        for i in range(len(s[1:])):
+            ev[functions[s[0]][0][i]] = eval(s[i + 1])
+        print(eval(functions[s[0]][1], None, ev))
+    s = input().split(' ')
+    lines_count += 1
+print(eval(s[1] + '.format(' + str(len(functions) + 1) + ',' + str(lines_count) + ')'))

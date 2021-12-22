@@ -1,37 +1,27 @@
-def my_scanf(m):
-    str =  input()
-    if len(str)==0:
-        return []
-    str = input()
-    while str[1] != "#":
-        lst = []
-        for i in range(1, len(str)):
-            lst.append(str[i])
-        m.append(lst)
-        str = input()
-    return m
+def my_print(not_waterr, val, waterr):
+    print('.' * not_waterr   + ' ' * (val - not_waterr)   + f' {not_waterr}/{total}')
+    print('~' * waterr + ' ' * (val - waterr) + f' {waterr}/{total}')
 
-def my_print(g, w, ww):
-    for i in range(ww + 2):
-        print("#", end = '')
-    print()
-    for i in range(g // ww):
-        print("#" + "." * ww + "#", end = '\n')
-    for i in range(w // ww):
-        print("#" + "~" * ww + "#", end = '\n')
-    for i in range(ww + 2):
-        print("#", end = '')
-    print()
-
-w, g, n = 0, 0, 0
-m = []
-mas = my_scanf(m)
-if len(mas) != 0:
-    for i in mas: 
-        w += i.count("~")
-        g += i.count(".")
-    hh, ww = len(mas), len(mas[0])
-    n = hh
-    hh = ww
-    ww = n
-    my_print(g, w, ww)
+fline = input()
+waterr, h = 0, 0
+not_waterr = 0
+w = len(fline) - 2
+while True:
+    line = input()
+    not_waterr   += line.count('.')
+    waterr += line.count('~')
+    h += 1
+    if (fline == line): break
+w, h = h, w
+print('#' * w + '##')
+for i in range(h):
+    print('#', end='')
+    if not_waterr - i * w > 0:
+        print('.' * w, end='')
+    else:
+        print('~' * w, end='')
+    print('#')
+print('#' * w + '##')
+val = max(waterr, not_waterr)
+total = not_waterr + waterr
+my_print(not_waterr, val, waterr)
