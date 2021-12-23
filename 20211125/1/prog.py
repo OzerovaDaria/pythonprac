@@ -36,5 +36,5 @@ s = sys.stdin.buffer.read()
 n = s[0]
 result = s[0:1]
 s = s[1:]
-result = f(n, len(s) - 1, s, result)
+result = f(n, len(s), s, result)
 sys.stdout.buffer.write(result)

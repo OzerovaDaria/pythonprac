@@ -1,33 +1,18 @@
-import collections
-
-def check(st):
-    for i in st:
-        if not (i.isalpha() or (i == '\t' or i == '\n')):
-            st = st.replace(i, ' ')
-    #print("st = ", st)
-    return st
-
-w = int(input())
+def f(d, N, c):
+    for i in c:
+        if N == len(i):
+            d.setdefault(i.lower(), 0)
+            d[i.lower()] += 1
+    return d
+    
+N = int(input())
 d = {}
-strstr = ''
-st = input()
-while True:
-    if st == '': break
-    strstr += check(st)
-    st = input()
-#print(strstr)
-strstr = strstr.lower().split()
-c = collections.Counter(strstr)
-for key, i in c.items():
-    if len(key) == w:
-        d[key] = i
-#print(c)
-#print(d)
-maxm = 0
-if d:
-    for i, j in d.items():
-        if j > maxm:
-            maxm = j
-    for i in sorted([j for j in d if d[j] == maxm]):
-        print(i, end=' ')
-print()
+c = ["."]
+while (s := input()):
+    # print(s)
+    for i in s:
+        if not i.isalpha():
+            s = s.replace(i, ' ')
+    c = s.split()
+    d = f(d, N, c)
+print(" ".join([i for i in d if d[i]==d[max(d, key=d.get)]]))

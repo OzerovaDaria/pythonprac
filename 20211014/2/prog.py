@@ -1,24 +1,22 @@
-def scale(A, B, a, b, x):
-    return (x - A) / (B - A) * (b - a) + a
-
-W, H, A, B, F = input().split()
-W = int(W)
-H = int(H)
-A = float(A)
-B = float(B)
-
-X = [scale(0, W-1, A, B, i) for i in range(W)]
-Y = [eval(F) for x in X]
+from math import *
+def mass(aa, bb, a, b, x):
+    return (x - aa)/(bb - aa) * (b - a) + a
+def make (ww, H, strn, y_num):
+    for i in range(ww):
+        for j in range(H):
+            if H - j - 1 == y_num[i]:
+                strn[j] += '*'
+            else:
+                strn[j] += ' '
+    return strn
+ww, H, a, b, s = input().split()
+ww, H, a, b = int(ww), int(H), int(a), int(b)
+f = lambda x: eval(s)
+X = [mass(0, ww, a, b, i) for i in range(ww)]
+Y = [f(x) for x in X]
 my, My = min(Y), max(Y)
-
-res = [' ' * len(X) for j in range(len(Y))]
-
-for i, x in enumerate(X):
-	point = eval(F)
-	j = 0
-	while Y[j] < point:
-		j += 1
-	res[j] = res[j][:i] + '*' + res[j][i+1:]
-
-for el in res[::-1]:
-	print(el)
+y_num = [int(mass(my, My, 0, H, f(x))) for x in X]
+strn = ['' for _ in range(H)]
+strn = make(ww, H, strn, y_num )
+for st in strn:
+    print(st)
