@@ -8,3 +8,4 @@ def dist(s1, s2, m):
         return textdistance.levenshtein(s1, s2)
     else:
         return -1
+s1, s2, m = str(input()), str(input()), str(input())
