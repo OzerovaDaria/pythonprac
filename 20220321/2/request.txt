@@ -1,0 +1,1 @@
+Появляется ошибка компиляции: ModuleNotFoundError: No module named 'pandas'(line 19). Использую Win10 x64, IDE PyCharm Community 2017.3, Python 3.6.4
