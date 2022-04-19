@@ -12,7 +12,6 @@ class SquareIO():
 def my_print(str):
     SquareIO().printResult(str)
 
-
 def solveSquare(a, b, c):
     if a != 0:
         d = b ** 2 - 4 * a * c
@@ -41,8 +40,10 @@ def my_solve():
     b = float(SquareIO().inputCoeff('b'))
     c = float(SquareIO().inputCoeff('c'))
     res = solveSquare(a, b, c)
-    SquareIO().printResult(res)
+    if res:
+        SquareIO().printResult(res)
 
 if __name__ == "__main__":
     my_solve()
+
 
