@@ -1,8 +1,0 @@
-[build-system]
-requires = ["build", "setuptools", "wheel", "unittest", "doit"]
-build-backend = "setuptoools.build_meta"
-
-[project]
-name = "prog"
-version = "0.1"
-dependdencies = ["pyfiglet",]
