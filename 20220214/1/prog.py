@@ -7,6 +7,16 @@ import zlib
 import os
 from os.path import basename, dirname
 
+def find_parent(body):
+    it = iter(body.decode().split('\n'))
+    while iter:
+        st = next(it)
+        if not st:
+            break
+        m = st.split(" ", 1)
+        if m[0] == 'parent':
+            return m[1]
+
 def body_format(body):
     r = []
     while body:
@@ -60,11 +70,38 @@ elif len(sys.argv) > 1:
     print('last commit in', sys.argv[1], "branch ", ''.join(last_commit.split('/')[-2:]), "\nsize", int(size))
     print(body.decode())
 
+
+
     str_tree, a, b = body.partition(b'\x00')
     st = str_tree.decode().split(' ')[1][:40]
     #print(str_tree.decode().split(' '))
     tree_obj = os.path.join(pr, st[0:2], st[2:])
     pass_tree(pr, tree_obj, str_tree.decode().split(' '))
+
+    parent = find_parent(body)
+    while (parent):
+        num = parent
+        pr += '/objects'
+        last_commit = os.path.join(pr, num[0:2], num[2:])
+        f.close()
+        try:
+            f = open(last_commit, 'rb')
+        except FileNotFoundError as e:
+            break
+        obj = decompress(f.read())
+        h, a, body = obj.partition(b'\x00')
+        a, size = h.split()
+        f.close()
+        print('next commit', ''.join(last_commit.split('/')[-2:]), "\nsize", int(size))
+        print(body.decode())
+
+        str_tree, a, b = body.partition(b'\x00')
+        st = str_tree.decode().split(' ')[1][:40]
+        # print(str_tree.decode().split(' '))
+        tree_obj = os.path.join(pr, st[0:2], st[2:])
+        pass_tree(pr, tree_obj, str_tree.decode().split(' '))
+
+        parent = find_parent(body)
 
 
 
