@@ -48,6 +48,7 @@ def pass_tree(pr, tree_obj, st):
         tree_next = body.partition(b'\x00')[2][:20].hex()
         tree_obj = os.path.join(pr, tree_next[:2], tree_next[2:])
         print('|', '*'*20)
+        print("|")
 
 
 pr = '../../.git'
@@ -79,14 +80,17 @@ elif len(sys.argv) > 1:
     pass_tree(pr, tree_obj, str_tree.decode().split(' '))
 
     parent = find_parent(body)
+    print("PARENT", parent)
     while (parent):
+        print("PARENT", parent)
         num = parent
         pr += '/objects'
         last_commit = os.path.join(pr, num[0:2], num[2:])
-        f.close()
+        print("LAST", last_commit)
         try:
             f = open(last_commit, 'rb')
         except FileNotFoundError as e:
+            print("fail")
             break
         obj = decompress(f.read())
         h, a, body = obj.partition(b'\x00')
@@ -94,14 +98,16 @@ elif len(sys.argv) > 1:
         f.close()
         print('next commit', ''.join(last_commit.split('/')[-2:]), "\nsize", int(size))
         print(body.decode())
-
-        str_tree, a, b = body.partition(b'\x00')
-        st = str_tree.decode().split(' ')[1][:40]
-        # print(str_tree.decode().split(' '))
-        tree_obj = os.path.join(pr, st[0:2], st[2:])
-        pass_tree(pr, tree_obj, str_tree.decode().split(' '))
-
         parent = find_parent(body)
+        try:
+            str_tree, a, b = body.partition(b'\x00')
+            st = str_tree.decode().split(' ')[1][:40]
+            # print(str_tree.decode().split(' '))
+            tree_obj = os.path.join(pr, st[0:2], st[2:])
+            pass_tree(pr, tree_obj, str_tree.decode().split(' '))
+        except FileNotFoundError as e:
+            pass
+
 
 
 
