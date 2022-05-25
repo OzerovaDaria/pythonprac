@@ -6,4 +6,5 @@ def dist(s1, s2):
 
 a, b = input(), input()
 res = dist(a, b)
+
 print(res)
