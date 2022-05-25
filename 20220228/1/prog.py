@@ -2,7 +2,13 @@
 import textdistance as td
 
 def dist(s1, s2, s3):
-    return td.levenshtein(s1, s2)
+    if s3 == 'L':
+        return td.levenshtein(s1, s2)
+    elif s3 == 'D':
+        return td.damerau_levenshtein(s1, s2)
+    else:
+        return -1
+    
 
 a, b, c = input(), input(), input()
 res = dist(a, b, c)
