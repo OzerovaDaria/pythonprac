@@ -13,4 +13,8 @@ def dist(s1, s2, s3):
 a, b, c = input(), input(), input()
 pool = mp.Pool(1)
 pr = pool.apply_async(dist, (a, b, c))
-res = pr.get()
+#res = pr.get()
+try:
+    res = pr.get(1000)
+except:
+    res = -1
